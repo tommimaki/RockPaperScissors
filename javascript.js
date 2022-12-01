@@ -1,51 +1,69 @@
-
 //variables
+let playerScore;
+let compScore;
+
+let choice;
 let compInput;
 let userInput = prompt("write rock paper or scissors");
 
 function getCompuperChoice() {
-
-  let choice = Math.floor(Math.random() * 3);
+  choice = Math.floor(Math.random() * 3);
 
   if (choice == 0) {
     compInput = "rock";
   } else if (choice == 1) {
     compInput = "paper";
   } else {
-    compInput = "scissors"
+    compInput = "scissors";
   }
+  return compInput;
 }
 
 getCompuperChoice();
-console.log(compInput)
-console.log(userInput)
 
-function compareAnswers(compInput, userInput){
-    if (compInput == userInput) {
-        console.log('tie')
+function compareAnswers(compInput, userInput) {
+  if (compInput == userInput) {
+    return "tie";
 
-        //rock choises
-    } else if (compInput == "rock" && userInput == "paper"){
-        console.log(`computer played ${compInput} user played ${userInput}, user wins `)
-    } else if (compInput == "rock" && userInput == "scissors"){
-        console.log(`computer played ${compInput} user played ${userInput}, computer wins `)
-    }  
-    
-    // paper choises
-    else if (compInput == "paper" && userInput == "scissors"){
-        console.log(`computer played ${compInput} user played ${userInput}, user wins `)
-    } else if (compInput == "paper" && userInput == "rock"){
-        console.log(`computer played ${compInput} user played ${userInput}, computer wins `)
-    }  
-     // scissors choises
-    else if (compInput == "scissors" && userInput == "rock"){
-        console.log(`computer played ${compInput} user played ${userInput}, user wins `)
-    } else if (compInput == "scissors" && userInput == "paper"){
-        console.log(`computer played ${compInput} user played ${userInput}, computer wins `)
-    } else{
-        console.log('input not valid');
-    }
-    
+    //rock choises
+  } else if (compInput == "rock" && userInput == "paper") {
+    playerScore+= 1;
+    return `computer played ${compInput} user played ${userInput}, user wins `;
+  } else if (compInput == "rock" && userInput == "scissors") {
+    compScore+= 1;
+    return `computer played ${compInput} user played ${userInput}, computer wins `;
+  }
+
+  // paper choises
+  else if (compInput == "paper" && userInput == "scissors") {
+    playerScore += 1;
+    return `computer played ${compInput} user played ${userInput}, user wins `;
+  } else if (compInput == "paper" && userInput == "rock") {
+    compScore+= 1;
+    return `computer played ${compInput} user played ${userInput}, computer wins `;
+  }
+  // scissors choises
+  else if (compInput == "scissors" && userInput == "rock") {
+    playerScore+= 1;
+    return `computer played ${compInput} user played ${userInput}, user wins `;
+  } else if (compInput == "scissors" && userInput == "paper") {
+    compScore+= 1;
+    return `computer played ${compInput} user played ${userInput}, computer wins `;
+  } else {
+    return "input not valid";
+  }
 }
 
-compareAnswers(compInput,userInput);
+// console.log(compareAnswers(compInput,userInput));
+
+function play() {
+  let i = 1;
+  while (i <= 5) {
+    let compC = getCompuperChoice();
+    let userInput = prompt("write rock paper or scissors");
+    console.log(compareAnswers(compC, userInput));
+    i++;
+  }
+}
+
+play();
